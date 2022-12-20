@@ -1,0 +1,49 @@
+#!/usr/bin/make -f
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/autotools.mk
+include /usr/share/cdbs/1/class/makefile.mk
+include /usr/share/cdbs/1/rules/autoreconf.mk
+include /usr/share/dpkg/buildflags.mk
+
+# https://wiki.debian.org/HardeningWalkthrough#rules_files_based_on_cdbs
+# export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+# export DEB_CFLAGS_MAINT_APPEND = -Wall
+
+DEB_INSTALL_DOCS_ALL=README NEWS AUTHORS NOTICE
+
+DEB_CONFIGURE_EXTRA_FLAGS += --libdir=\$${prefix}/lib/$(DEB_HOST_MULTIARCH)
+
+DEB_CONFIGURE_USER_FLAGS= \
+  --with-raptor=system \
+  --with-rasqal=system \
+  --with-threestore=no \
+  --with-mysql=yes \
+  --with-sqlite=yes \
+  --with-postgresql=yes \
+  --with-openssl-digests=no \
+  --with-virtuoso=yes \
+  --enable-release
+
+# DEB_SHLIBDEPS_LIBRARY_librdf0 := librdf
+# DEB_SHLIBDEPS_INCLUDE_librdf0 := debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)
+
+DEB_MAKE_CLEAN_TARGET := 
+
+clean::
+	# raw distclean deletes the docs/html documentation
+	if test -r Makefile; then \
+	  mv docs/html docs/html.saved; \
+	  $(MAKE) distclean; \
+	  mv docs/html.saved docs/html; \
+	fi
+	rm -f docs/html/librdf.devhelp2
+	rm -f config.log
+
+build/librdf0-dev::
+	cd docs/html && rm -f librdf.devhelp2 && ln -s redland.devhelp2 librdf.devhelp2
+
+install/librdf0-dev::
+	rm -f debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/redland/librdf_storage_*.a
+	for lib in debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/librdf.la debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/redland/librdf_storage_*.la; do \
+	  sed "/dependency_libs/ s/'.*'/''/" $$lib >> $$lib.new && mv $$lib.new $$lib; \
+	done
