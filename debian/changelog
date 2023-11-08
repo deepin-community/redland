@@ -1,14 +1,39 @@
-redland (1.0.17-1.1-deepin1) unstable; urgency=medium
+redland (1.0.17-3) unstable; urgency=medium
 
-  * Rebuild
+  * QA upload.
 
- -- Deepin Packages Builder <packages@deepin.org>  Thu, 24 Nov 2022 07:20:39 +0800
+  [ Helmut Grohne ]
+  * Annotate perl build dependency with :any. (Closes: #912911)
+
+  [ Adam Borowski ]
+  * Drop ancient version constraints.
+  * dh 10.
+  * Set watch file version to 4, use https.
+  * wrap-and-sort.
+  * R³.
+  * Drop B-Dep on dh-autoreconf.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Mon, 14 Nov 2022 06:03:12 +0100
+
+redland (1.0.17-2) unstable; urgency=medium
+
+  * QA upload.
+  * Set maintainer to Debian QA Group <packages@qa.debian.org>. (see: #1012729)
+
+ -- Marcos Talau <talau@debian.org>  Sun, 13 Nov 2022 08:22:12 -0300
+
+redland (1.0.17-1.2) unstable; urgency=medium
+
+  [ Sebastien Bacher ]
+  * Update to dh8 to fix the build (Closes: #965798)
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Fri, 20 May 2022 22:42:52 +0200
 
 redland (1.0.17-1.1) unstable; urgency=medium
 
   * Non-maintainer upload.
   * switch to build depend on the metapackage default-libmysqlclient-dev
-    (closes: #845902) 
+    (closes: #845902)
 
  -- Rene Engelhard <rene@debian.org>  Thu, 15 Dec 2016 22:47:31 +0100
 
@@ -85,7 +110,7 @@ redland (1.0.13-2) unstable; urgency=low
   * Builds with binutils-gold (Closes: #556317)
   * Rebuild against versioned libraptor2 (Closes: #561681, #613673, #614344)
   * Raptor2 fixes atom crash (Closes: #596503)
-  
+
  -- Dave Beckett <dajobe@debian.org>  Fri, 25 Feb 2011 12:45:48 -0800
 
 redland (1.0.13-1) unstable; urgency=low
@@ -115,7 +140,7 @@ redland (1.0.11-1) experimental; urgency=low
 
 redland (1.0.10-3) unstable; urgency=low
 
-  * debian/control: 
+  * debian/control:
     - Standards Version: 3.9.1 (no changes)
   * source format 3.0 (quilt)
   * Remove cdbs simple-patchsys.mk
@@ -123,10 +148,10 @@ redland (1.0.10-3) unstable; urgency=low
     multiple graphs using rasqal
 
  -- Dave Beckett <dajobe@debian.org>  Fri, 20 Aug 2010 18:33:55 -0700
-  
+
 redland (1.0.10-2) unstable; urgency=low
 
-  * debian/control: 
+  * debian/control:
     - Standards Version: 3.8.4 (no changes)
     - librdf0 package Suggests: redland-utils not Recommends: to prevent
       installing utility for library-only users (Closes: #573271, #573207)
@@ -144,7 +169,7 @@ redland (1.0.11-1) experimental; urgency=low
 
 redland (1.0.10-3) unstable; urgency=low
 
-  * debian/control: 
+  * debian/control:
     - Standards Version: 3.9.1 (no changes)
   * source format 3.0 (quilt)
   * Remove cdbs simple-patchsys.mk
@@ -152,10 +177,10 @@ redland (1.0.10-3) unstable; urgency=low
     multiple graphs using rasqal
 
  -- Dave Beckett <dajobe@debian.org>  Fri, 20 Aug 2010 18:33:55 -0700
-  
+
 redland (1.0.10-2) unstable; urgency=low
 
-  * debian/control: 
+  * debian/control:
     - Standards Version: 3.8.4 (no changes)
     - librdf0 package Suggests: redland-utils not Recommends: to prevent
       installing utility for library-only users (Closes: #573271, #573207)
@@ -543,7 +568,7 @@ redland (0.9.13-1) unstable; urgency=high
 
 redland (0.9.12-13) unstable; urgency=low
 
-  * Add libdb3-dev to Build-Depends to enable BDB stores 
+  * Add libdb3-dev to Build-Depends to enable BDB stores
   * Ruby fixes
 
  -- Dave Beckett <Dave.Beckett@bristol.ac.uk>  Wed, 20 Aug 2003 19:37:57 +0100
